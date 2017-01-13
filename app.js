@@ -264,12 +264,12 @@ function ($scope, $http, $location, $rootScope, $timeout, $route, $interval, ngD
       { name: 'Yellow Restaurant', type: 'French', id: 6 }
         ];
         var presentationRestaurants = [
-         { name: 'Coffee Restaurant', type: 'American', id: 1, img: 'coffeeRestaurant.jpg', descr: 'Serves coffee and paincake', stars: getSentenceForStars('Coffee Restaurant') },
-         { name: 'Green Restaurant', type: 'Indian', id: 2, img: 'greenRestaurant.jpg', descr: 'Serves Indian', stars: getSentenceForStars('Green Restaurant') },
-         { name: 'Marbel Restaurant', type: 'Italian', id: 3, img: 'marbelRestaurant.jpg', descr: 'Serves Italian', stars: getSentenceForStars('Marbel Restaurant') },
-         { name: 'Pizza Restaurant', type: 'French', id: 4, img: 'pizzaPlace.jpg', descr: 'Serves French', stars: getSentenceForStars('Pizza Restaurant') },
-         { name: 'Stone Restaurant', type: 'Italian', id: 5, img: 'stoneRestaurant.jpg', descr: 'Serves burgers', stars: getSentenceForStars('Stone Restaurant') },
-         { name: 'Yellow Restaurant', type: 'French', id: 6, img: 'yellowRestaurant.jpg', descr: 'Serves generic', stars: getSentenceForStars('Yellow Restaurant') }
+         { name: 'Coffee Restaurant', type: 'American', id: 1, img: 'restaurantreviewer/coffeeRestaurant.jpg', descr: 'Serves coffee and paincake', stars: getSentenceForStars('Coffee Restaurant') },
+         { name: 'Green Restaurant', type: 'Indian', id: 2, img: 'restaurantreviewer/greenRestaurant.jpg', descr: 'Serves Indian', stars: getSentenceForStars('Green Restaurant') },
+         { name: 'Marbel Restaurant', type: 'Italian', id: 3, img: 'restaurantreviewer/marbelRestaurant.jpg', descr: 'Serves Italian', stars: getSentenceForStars('Marbel Restaurant') },
+         { name: 'Pizza Restaurant', type: 'French', id: 4, img: 'restaurantreviewer/pizzaPlace.jpg', descr: 'Serves French', stars: getSentenceForStars('Pizza Restaurant') },
+         { name: 'Stone Restaurant', type: 'Italian', id: 5, img: 'restaurantreviewer/stoneRestaurant.jpg', descr: 'Serves burgers', stars: getSentenceForStars('Stone Restaurant') },
+         { name: 'Yellow Restaurant', type: 'French', id: 6, img: 'restaurantreviewer/yellowRestaurant.jpg', descr: 'Serves generic', stars: getSentenceForStars('Yellow Restaurant') }
         ];
 
         $scope.selected = function (c, v) {
