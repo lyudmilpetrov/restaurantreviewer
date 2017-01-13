@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="rr" ng-controller="c" ng-keydown="keyP($event)">
+<head>
+    <meta charset="utf-8">
+    <title>Restaurant reviewer</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name='description' content='fake Restaurant Review'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Lyudmil Petrov">
+    <meta name='mobile-web-app-capable' content='yes'>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <!-- ngDialog -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.6.2/js/ngDialog.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.6.2/css/ngDialog.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.6.2/css/ngDialog-theme-default.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <!-- ui-select files -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.18.1/select.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.18.1/select.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+    <script src="app.min.js"></script>
+    <link rel="stylesheet" href="main.min.css" type="text/css" />
+</head>
+<body id="b">
+    <div class="navbar navbar-inverse navbar-form">
+        <div class="container container-fluid">
+            <section>
+                <h1 class="navbar-brand" style="color:floralwhite" id="0">Restaurant reviewer</h1>
+            </section>
+            <br />
+            <div role="navigation" aria-label="Main for all restaurants">
+                <ul class="nav" style="background-color:black">
+                    <li>
+                        <a href="" style="background-color:snow">Browse all restaurant</a>
+                        <ul>
+                            <li ng-repeat="i in restaurants.all"><a href="" ng-click="selected('one',i.name)">{{i.name}} - {{i.type}}</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="" style="background-color:snow">Select type of restaurant</a>
+                        <ul>
+                            <li ng-repeat="i in restaurants.all | unique: 'type'"><a href="" ng-click="selected('many',i.type)">{{i.type}}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div ng-repeat="i in restaurants.pr" style="border:3px solid black; margin:10px">
+        <section>
+            <a href="" style="float: left">
+                <img class="img-responsive img-thumbnail" ng-src="/{{i.img}}" alt="{{i.name}}" style="width:200px; height:150px; margin-left:20px">
+            </a>
+                <br />
+                <a href="" style="float: left; font-size:25px;color:black;margin:20px">{{i.name}}</a>
+</section>
+        <br />
+        <p>
+            <header>
+                <a href="" style="font-size:20px;color:black;margin:20px;">{{i.descr}}</a>
+                <br />
+                <a href="" style="font-size:18px;color:black;margin:20px;">{{i.stars}}</a>
+            </header>
+            <div class="btn-toolbar">
+                <button type="button" class="btn" style="float: left; margin:10px;background-color:black;color:snow;font-size:18px" ng-click="initializeAddReviewProcess(i.name)">Add review</button>
+                <button type="button" class="btn" style="float: right; margin:10px;background-color:black;color:snow;font-size:18px" ng-click="initializeReadReviewProcess(i.name)">Reviews</button>
+            </div>
+        </p>
+
+    </div>
+    <script type="text/ng-template" id="addReview">
+        <cente>
+            <div class="ngdialog-message">
+                <center><a href="" id="addReviewWindow" style="font-size:25px;color:black">Leave review for {{addReviewTitle}}</a></center>
+                <textarea ng-model="addReviewText" name="add review" class="form-username form-control" placeholder="Describe your review here..." style="font-size:25px;color:black" required></textarea>
+                <br />
+                <input ng-model="addReviewStars" type="number" name="quantity" min="1" max="5" placeholder="Select one out of five stars" class="form-username form-control" style="font-size:25px;color:black" required>
+                <br />
+                <input ng-model="addReviewName" placeholder="Enter you name" class="form-username form-control" style="font-size:25px;color:black" required>
+            </div>
+        </cente>
+        <div class="ngdialog-buttons">
+            <button type="button" class="btn btn-primary pull-right" ng-click="addReviewProcess(addReviewTitle,addReviewText,addReviewStars,addReviewName)">Save</button>
+            <button type="button" class="btn btn-default pull-left" ng-click="closeThisDialog('button')">Cancel</button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="readReview">
+        <cente>
+            <div class="ngdialog-message">
+                <center><a href="" id="readReviewWindow" style="font-size:25px;color:black">Reviews for {{readReviewTitle}}</a></center>
+            </div>
+        </cente>
+        <div ng-repeat="i in restaurants.reviews">
+            <a href="" id="readReviewWindow" style="font-size:25px;color:black">{{getSentenceForReview(i.stars,i.review,i.name,i.time)}}</a>
+            <br />
+            <center><div class="aligncenter" style="width:auto;height:0;border-top:5px outset #171616;font-size:0;">-</div></center>
+        </div>
+        <div class="ngdialog-buttons">
+            <button type="button" class="btn btn-default pull-right" ng-click="closeThisDialog('button')">Close</button>
+        </div>
+    </script>
+</body>
+</html>
+
